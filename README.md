@@ -19,7 +19,7 @@ Key features:
 ## Requirements
 
 - Python 3.12+
-- Libraries (install via `pip install -r requirements.txt`):
+- Libraries:
   - torch
   - numpy
   - scipy
