@@ -1,4 +1,3 @@
-```markdown
 # ConvLSTM Option Price Prediction Model
 
 ## Overview
@@ -30,53 +29,3 @@ Key features:
   - scikit-learn
 
 Create a `requirements.txt` file with:
-```
-torch
-numpy
-scipy
-pandas
-matplotlib
-polygon-api-client
-scikit-learn
-```
-
-## Setup
-
-1. **API Key**: The notebook uses a Polygon API key for data fetching. Replace the hardcoded key (`XN1r3nHQ1Rb3SsbqdwDI72dE35vJkCzP`) with your own. Sign up for a free API key at [polygon.io](https://polygon.io).
-
-2. **Environment**: Run in a Jupyter environment (e.g., Jupyter Notebook or JupyterLab). Ensure CUDA is available if using GPU for training.
-
-3. **Data Range**: Data is fetched from September 1, 2024, to September 25, 2025. Adjust `from_date` and `to_date` as needed. Note: The current date in the context is September 26, 2025, so data up to the previous day is used.
-
-## Usage
-
-1. **Run the Notebook**:
-   - Open `LSTM.ipynb` in Jupyter.
-   - Execute cells sequentially.
-   - The data fetching cell may take time depending on API limits (up to 50,000 results).
-
-2. **Key Sections**:
-   - **Data Preparation**: Implements Black-Scholes for implied volatility and fetches OHLCV data for the option and underlying stock (AAPL).
-   - **Dataset Construction**: Creates a Pandas DataFrame with columns: `Trading_Date`, `TTM_Days`, `Stock_Price`, `Strike_Price`, `implied_vol`, `Option_Price`, `imp_vol_last` (lagged implied volatility).
-   - **Model Training**: Defines ConvLSTM architecture, splits data (90/10 train/test), trains for up to 10,000 epochs with early stopping.
-   - **Visualization**: Plots AAPL stock price over time (with strike line) and actual vs. predicted option prices for the test period.
-   - **Validation**: Prints dataset stats, test period details, and sample predictions for verification.
-
-3. **Customization**:
-   - Change `option_symbol` to analyze other options (e.g., different strikes or expirations).
-   - Adjust hyperparameters: `SEQUENCE_LENGTH=15`, `HIDDEN_SIZE=64`, `NUM_LAYERS=2`, `BATCH_SIZE=64`, `NUM_EPOCHS=10000`.
-   - For delta prediction (to fix lagging issues): Modify the sequence creation function as suggested in related discussions.
-
-## Data Source
-
-- **Polygon API**: Daily aggregates for option and stock prices.
-- **Dataset Size**: Approximately 262 rows (after cleaning), covering trading days from late 2024 to September 2025.
-- **Features**:
-  - Convolutional inputs: Stock_Price, TTM_Days, Strike_Price, imp_vol_last.
-  - LSTM inputs: Historical Option_Price sequences.
-  - Target: Future Option_Price (or deltas for improved forecasting).
-
-## Model Details
-
-- **Architecture**: ConvLSTMOptionPrice class with 3 Conv1D layers, batch norm
-```
