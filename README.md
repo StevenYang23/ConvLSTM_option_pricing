@@ -37,7 +37,7 @@ Key features:
 3. **Data Range**: Data is fetched from September 1, 2024, to September 25, 2025. Adjust `from_date` and `to_date` as needed. Note: The current date in the context is September 26, 2025, so data up to the previous day is used.
 
 ## Outcome Display
-**How modle fit on option price line graph**
+**How the model fits on the option price line graph**
 <img src="demo/output2.png" alt="How modle fit on option price line graph" width="1000" />
 **A More Detailed Look**
 <img src="demo/output1.png" alt="A More Detailed Look" width="1000" />
