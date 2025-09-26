@@ -12,7 +12,7 @@ The notebook (`LSTM.ipynb`) demonstrates:
 
 Key features:
 - Uses PyTorch for the neural network.
-- Handles sequence data with a sliding window approach (sequence length: 15 days).
+- Handles sequence data with a sliding window approach.
 - Trains on 90% of the data and tests on the remaining 10%.
 - Focuses on predicting option prices for the test period (e.g., August 20, 2025, to September 24, 2025, based on sample output).
 
@@ -25,9 +25,9 @@ Key features:
   - scipy
   - pandas
   - matplotlib
-  - polygon-api-client (for data fetching)
+  - polygon-api-client
   - scikit-learn
-  - 
+    
 ## Data Source
 
 - **Polygon API**: Daily aggregates for option and stock prices.
