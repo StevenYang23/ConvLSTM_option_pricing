@@ -27,15 +27,19 @@ Key features:
   - matplotlib
   - polygon-api-client (for data fetching)
   - scikit-learn
+  - 
+## Data Source
 
-## Setup
+- **Polygon API**: Daily aggregates for option and stock prices.
+- **Dataset Size**: Approximately 262 rows (after cleaning), covering trading days from late 2024 to September 2025.
+- **Features**:
+  - Convolutional inputs: Stock_Price, TTM_Days, Strike_Price, imp_vol_last.
+  - LSTM inputs: Historical Option_Price sequences.
+  - Target: Future Option_Price (or deltas for improved forecasting).
 
-1. **API Key**: The notebook uses a Polygon API key for data fetching. Replace the hardcoded key (`XN1r3nHQ1Rb3SsbqdwDI72dE35vJkCzP`) with your own. Sign up for a free API key at [polygon.io](https://polygon.io).
+## Model Details
 
-2. **Environment**: Run in a Jupyter environment (e.g., Jupyter Notebook or JupyterLab). Ensure CUDA is available if using GPU for training.
-
-3. **Data Range**: Data is fetched from September 1, 2024, to September 25, 2025. Adjust `from_date` and `to_date` as needed. Note: The current date in the context is September 26, 2025, so data up to the previous day is used.
-
+- **Architecture**: ConvLSTMOptionPrice class with 3 Conv1D layers, batch norm
 ## Outcome Display
 **How the model fits on the option price line graph**
 <img src="demo/output2.png" alt="How modle fit on option price line graph" width="1000" />
@@ -61,15 +65,4 @@ Key features:
    - Adjust hyperparameters: `SEQUENCE_LENGTH=15`, `HIDDEN_SIZE=64`, `NUM_LAYERS=2`, `BATCH_SIZE=64`, `NUM_EPOCHS=10000`.
    - For delta prediction (to fix lagging issues): Modify the sequence creation function as suggested in related discussions.
 
-## Data Source
 
-- **Polygon API**: Daily aggregates for option and stock prices.
-- **Dataset Size**: Approximately 262 rows (after cleaning), covering trading days from late 2024 to September 2025.
-- **Features**:
-  - Convolutional inputs: Stock_Price, TTM_Days, Strike_Price, imp_vol_last.
-  - LSTM inputs: Historical Option_Price sequences.
-  - Target: Future Option_Price (or deltas for improved forecasting).
-
-## Model Details
-
-- **Architecture**: ConvLSTMOptionPrice class with 3 Conv1D layers, batch norm
